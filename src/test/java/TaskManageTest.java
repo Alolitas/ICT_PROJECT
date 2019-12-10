@@ -23,7 +23,7 @@ public class TaskManageTest extends TestCaseBase{
         TaskManageMovie taskManageMovie = new TaskManageMovie(driver);
         taskManageMovie.clickTaskAdd();
         taskManageMovie.sendTaskName("1125外呼任务");
-        taskManageMovie.selectTaskTime("2019-12-06","2019-12-21");
+        taskManageMovie.selectTaskTime("2019-12-05","2019-12-21");
         taskManageMovie.selectTaskComments("是");
         taskManageMovie.selectTaskFrom("掌中店");
         taskManageMovie.selectTaskType("号卡预约");
@@ -33,10 +33,19 @@ public class TaskManageTest extends TestCaseBase{
         taskManageMovie.clickMsgModeButton();
         taskManageMovie.selectMsgMode();
         taskManageMovie.clickMsgConfirm();
-        taskManageMovie.sendTaskDesc("很长很长很长很长的任务描述，断言字数长度");
-        taskManageMovie.clickNextStep();
+        taskManageMovie.sendTaskDesc("很长很长很长很长的任务描述，字数长度");
+        taskManageMovie.clickFirstNextStep();
         taskManageMovie.selectTaskTemplate("默认模板");
-        taskManageMovie.clickRosterFile();
+        taskManageMovie.clickRosterFile("C:\\Users\\Administrator\\Downloads\\外包三.xlsx");
+        taskManageMovie.clickNameMatch();
+        taskManageMovie.clickSecondNextStep();
+        taskManageMovie.clickConfirmImportBtn();
+        taskManageMovie.clickConfirmImportSecussBtn();
+        taskManageMovie.clickReferQnaieBtn();
+        taskManageMovie.selectFirstQnair();
+        taskManageMovie.clickThirdNextStep();
+        taskManageMovie.clickAutoDistribute();
+        taskManageMovie.selectHallNoSecuss();
 
     }
 }

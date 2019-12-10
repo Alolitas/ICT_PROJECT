@@ -91,7 +91,7 @@ public class TaskTemplatePage {
     //定位"新增"
     public WebElement templateAdd(){
         //元素等待
-        new PublicUtils(driver).webElementWait(newbutton,4);
+        new PublicUtils(driver).webElementWait(3,newbutton);
         return driver.findElement(newbutton);
     }
 
@@ -105,13 +105,13 @@ public class TaskTemplatePage {
 
     //模板名称输入框定位
     public  WebElement inputName(){
-        new PublicUtils(driver).webElementWait(nameinput,4);
+        new PublicUtils(driver).webElementWait(3,nameinput);
         return driver.findElement(nameinput);
     }
 
     //模板描述信息输入框定位
     public WebElement inputInfo(){
-        new PublicUtils(driver).webElementWait(infoinput,4);
+        new PublicUtils(driver).webElementWait(3,infoinput);
         return driver.findElement(infoinput);
     }
 
@@ -147,7 +147,7 @@ public class TaskTemplatePage {
 
     //直接点击修改的弹窗提示定位
     public WebElement warn_Update(){
-        new PublicUtils(driver).webElementWait(updatewarnning,4);
+        new PublicUtils(driver).webElementWait(3,updatewarnning);
         return driver.findElement(updatewarnning);
     }
 
@@ -168,7 +168,7 @@ public class TaskTemplatePage {
 
     //删除模板提示信息定位
     public WebElement warn_Delete(){
-        new PublicUtils(driver).webElementWait(updatewarnning,4);
+        new PublicUtils(driver).webElementWait(3,delwarnning);
         return driver.findElement(delwarnning);
     }
 

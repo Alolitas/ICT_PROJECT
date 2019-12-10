@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ICT_Project测试报告">
+    <test verbose="5" preserve-order="true" name="任务名单模板测试用例">
+        <!--指定运行测方用例-->
+        <classes>
+            <class name="TaskTemplateTest">
+            <methods>
+                <include name="taskTemplateTest"></include>
+                <include name="createTemplateBase"></include>
+            </methods>
+        </class>
+        </classes>
+    </test>
+
+    <!--指定运行测试类-->
+    <test name="外呼任务测试用例">
+            <classes>
+                <class name="TaskManageTest">
+            </class>
+        </classes>
+    </test>
+    <test name="发送邮件">
+        <classes>
+            <class name="SendMail">
+            </class>
+        </classes>
+    </test>
+
+    <!--指定运行测试包
+    <test name="xx测试">
+        <packages>
+            <package name="java"></package>
+        </packages>
+    </test>
+    -->
+</suite>
+
+

@@ -1,7 +1,4 @@
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
 
@@ -40,10 +37,12 @@ public class TaskManageMovie extends TaskManagePage{
     }
 
     /*选择开始结束时间*/
-    public void selectTaskTime(String starttime,String endtime) throws InterruptedException {
+    public void selectTaskTime(String starttime,String endtime) throws InterruptedException, IOException {
         super.removeStartAttribute().click();
         PublicUtils.sleepTime(0);
         super.removeStartAttribute().sendKeys(starttime);
+        //对开始日期与当前日期进行判断
+        new PublicUtils(driver).dataAssert(starttime);
         PublicUtils.sleepTime(0);
         super.removeEndAttribute().sendKeys(endtime);
     }
@@ -105,9 +104,9 @@ public class TaskManageMovie extends TaskManagePage{
         super.taskDesc().sendKeys(taskdesctext);
     }
 
-    /*点击下一步*/
-    public void clickNextStep(){
-        super.nextStep().click();
+    /*点击基本信息下一步按钮*/
+    public void clickFirstNextStep(){
+        super.firstNextStep().click();
     }
 
     /*选择名单模板*/
@@ -115,13 +114,72 @@ public class TaskManageMovie extends TaskManagePage{
         PublicUtils.selectWhat(super.taskTemplate(),taskTemplateName);
     }
 
-    /*点击浏览*/
-    public void clickRosterFile() throws IOException, InterruptedException {
-        Actions actions = new Actions(driver);
-        actions.click(super.rosterFile());
+    /*点击浏览上传模板*/
+    public void clickRosterFile(String filepath) throws IOException, InterruptedException {
+        super.rosterFile().sendKeys(filepath);
         PublicUtils.sleepTime(2);
-        //super.rosterFile().click();
-        Runtime.getRuntime().exec("E:\\rosterfile.exe");
     }
 
+    /*点击名称匹配*/
+    public void clickNameMatch(){
+        super.nameMatch().click();
+    }
+
+    /*点击名单导入下一步按钮*/
+    public void clickSecondNextStep(){
+        super.secondNextStep().click();
+    }
+
+    /*点击确认导入按钮*/
+    public void clickConfirmImportBtn(){
+        //表单切换
+        driver.switchTo().defaultContent();
+        super.confirmImport().click();
+    }
+
+    /*点击导入成功确认按钮*/
+    public void clickConfirmImportSecussBtn() throws InterruptedException {
+        driver.switchTo().defaultContent();
+        PublicUtils.sleepTime(1);
+        super.confirmImportSucess().click();
+    }
+
+    /*点击问卷配置的引用按钮*/
+    public void clickReferQnaieBtn(){
+        driver.switchTo().frame(taskManageFrame());
+        super.referQnaire().click();
+    }
+
+    /*选择第一个问卷并确定*/
+    public void selectFirstQnair() throws InterruptedException {
+        //切换表单
+        //driver.switchTo().parentFrame();
+        driver.switchTo().frame(super.qnairFrame());
+        PublicUtils.sleepTime(0);
+        super.qnairCheckBox().click();
+        super.qnairConfirm().click();
+    }
+
+    /*问卷配置点击下一步*/
+    public void clickThirdNextStep(){
+        driver.switchTo().parentFrame();
+        super.thirdNextStep().click();
+    }
+
+    /*点击自动分配*/
+    public void clickAutoDistribute(){
+        super.autoDistribute().click();
+    }
+
+    /*选择按厅分配,完成分配*/
+    public void selectHallNoSecuss() throws InterruptedException {
+        driver.switchTo().parentFrame();
+        driver.switchTo().frame(super.autoDistributeFrame());
+        PublicUtils.sleepTime(0);
+        super.hallNoCheckBox().click();
+        PublicUtils.sleepTime(0);
+        super.distributeToHallNo().click();
+        driver.switchTo().defaultContent();
+        super.distributeSecussConfirm().click();
+    }
 }

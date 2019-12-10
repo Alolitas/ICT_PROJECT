@@ -15,7 +15,7 @@ public class TestCaseBase {
 
     WebDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp(){
         System.setProperty("webdriver.chrome.driver","E:\\SeleniumDemo2\\drivers\\chromedriver.exe");
         this.driver = new ChromeDriver();
@@ -27,13 +27,11 @@ public class TestCaseBase {
         this.driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
     }
 
-/*
-    @AfterTest
+    @AfterMethod
     public void tearDown() throws InterruptedException {
         PublicUtils.sleepTime(2);
         this.driver.close();
     }
-*/
 
 /*    public WebDriver getDriver(){
         return this.driver;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [ICT_Project测试报告]">
+  <test thread-count="5" name="外呼任务测试用例(failed)">
+    <classes>
+      <class name="TaskManageTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="taskManageTest"/>
+          <include name="newTask"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- TaskManageTest -->
+    </classes>
+  </test> <!-- 外呼任务测试用例(failed) -->
+  <test thread-count="5" name="发送邮件(failed)">
+    <classes>
+      <class name="SendMail">
+        <methods>
+          <include name="sendMails"/>
+        </methods>
+      </class> <!-- SendMail -->
+    </classes>
+  </test> <!-- 发送邮件(failed) -->
+</suite> <!-- Failed suite [ICT_Project测试报告] -->
