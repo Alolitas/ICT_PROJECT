@@ -1,9 +1,13 @@
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.internal.WrapsDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -18,14 +22,14 @@ import java.util.Date;
  */
 public class PublicUtils {
 
-    WebDriver driver;
+    WebDriver  driver;
     //WebDriver driver;
     public PublicUtils(WebDriver driver){
         this.driver = driver;
     }
 
     //显示等待二次封装
-    public void webElementWait(int timeoutsecond,By by){
+    public  void webElementWait(int timeoutsecond,By by){
        new WebDriverWait(driver,timeoutsecond).until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
@@ -38,6 +42,12 @@ public class PublicUtils {
             return false;
         }
 
+    }
+    
+    //获取元素的文本
+    public static void assertTextConent(WebElement element,String expecttext){
+        String contenttext = element.getText();
+        Assert.assertEquals(contenttext,expecttext);
     }
 
     //select下拉框选择
@@ -64,7 +74,7 @@ public class PublicUtils {
         }
     }
 
-    //判断日期框开始时间是否大于等于当前时间
+    //判断日期框开始时间是否小于等于当前日期
     public void dataAssert(String startdata) throws IOException, InterruptedException {
         try {
             //将字符串日期格式化
@@ -74,14 +84,8 @@ public class PublicUtils {
             Date currentdate = new Date();
             //比较两个日期
             int flag = date1.compareTo(currentdate);
-            if(flag==0){
-                //如果日期相等，返回
-                return;
-            }else if(flag>0){
-                //小于0，当前日期在输入日期之前
-                return;
-            }else {
-                System.out.println("输入日期小于当前日期，不合法");
+            if(flag<=0){
+                System.out.println("开始日期小于等于当前日期，不合法");
                 //截图退出
                 this.screenShoot();
             }
@@ -94,7 +98,7 @@ public class PublicUtils {
 
 
     //屏幕截图
-    public void screenShoot() throws IOException, InterruptedException {
+    public  void screenShoot() throws IOException, InterruptedException {
         //转换时间格式
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         //获取当前时间
@@ -105,6 +109,24 @@ public class PublicUtils {
         FileUtils.copyFile(srcFile, new File("ScreenPhotos", time + ".png"));
         Thread.sleep(2000);
         driver.quit();
+    }
+
+    //部分截图（元素截图）
+    public static File elementShot(WebElement element) throws Exception {
+        //创建全屏截图
+        WrapsDriver wrapsDriver = (WrapsDriver)element;
+        File screen = ((TakesScreenshot)wrapsDriver.getWrappedDriver()).getScreenshotAs(OutputType.FILE);
+        BufferedImage image = ImageIO.read(screen);
+        //获取元素的高度、宽度
+        int width = element.getSize().getWidth();
+        int height = element.getSize().getHeight();
+        //创建一个矩形使用上面的高度，和宽度
+        //Rectangle rectangle = new Rectangle();
+        //元素坐标
+        Point p = element.getLocation();
+        BufferedImage img = image.getSubimage(p.getX(), p.getY(), width, height);
+        ImageIO.write(img, "png", screen);
+        return screen;
     }
 
 

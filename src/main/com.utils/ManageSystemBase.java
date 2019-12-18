@@ -7,17 +7,23 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author: A_dog.fang
  *
- * 页面操作对象driver，每个用例继承TestBase
+ * 页面操作对象driver，管理系统每个用例继承ManageSystemBase
  *
  *
  */
-public class TestCaseBase {
+public class ManageSystemBase {
 
     WebDriver driver;
+/*
+    @DataProvider(name="loginid")
+    public Object[][] data(){
+        return new Object[][]{{"jscmcc","123456"},{"sz0512","0512sz"}};
+    }
+*/
 
     @BeforeMethod
-    public void setUp(){
-        System.setProperty("webdriver.chrome.driver","E:\\SeleniumDemo2\\drivers\\chromedriver.exe");
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "E:\\SeleniumDemo2\\drivers\\chromedriver.exe");
         this.driver = new ChromeDriver();
         LoginMovie loginMovie = new LoginMovie(driver);
         //打开网址

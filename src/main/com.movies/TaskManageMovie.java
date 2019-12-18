@@ -172,7 +172,7 @@ public class TaskManageMovie extends TaskManagePage{
     }
 
     /*选择按厅分配,完成分配*/
-    public void selectHallNoSecuss() throws InterruptedException {
+    public void selectHallNoSecuss() throws Exception {
         driver.switchTo().parentFrame();
         driver.switchTo().frame(super.autoDistributeFrame());
         PublicUtils.sleepTime(0);
@@ -181,5 +181,13 @@ public class TaskManageMovie extends TaskManagePage{
         super.distributeToHallNo().click();
         driver.switchTo().defaultContent();
         super.distributeSecussConfirm().click();
+    }
+
+    /*点击导出按钮，判断提示信息是否为成功*/
+    public void clickOutButton(){
+        driver.switchTo().frame(super.taskManageFrame());
+        super.outputButton().click();
+        driver.switchTo().defaultContent();
+        PublicUtils.assertTextConent(super.outInfoText(),"操作成功，请稍后在系统管理->上传下载中心中进行查看并下载");
     }
 }

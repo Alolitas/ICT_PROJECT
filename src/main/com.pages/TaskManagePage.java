@@ -88,6 +88,10 @@ public class TaskManagePage {
     public static By distribute_to_hallno = By.xpath("/html/body/div/div[2]/button[1]");
     //分配完成确认按钮
     public static By distributesucessconfirm = By.linkText("确认");
+    //导出按钮
+    public static By outbutton = By.xpath("/html/body/div/div/div/div[2]/div[1]/button[7]");
+    //导出成功提示信息
+    public static By outinfotext = By.xpath("//*[starts-with(@id,\"layui-layer\")]/div[2]");
 
 
 
@@ -254,6 +258,16 @@ public class TaskManagePage {
 
     public WebElement distributeSecussConfirm(){
         return driver.findElement(distributesucessconfirm);
+    }
+
+    public WebElement outputButton(){
+        new PublicUtils(driver).webElementWait(4,hallnocheckbox);
+        return driver.findElement(outbutton);
+    }
+
+    public WebElement outInfoText(){
+
+        return taskForm().findElement(outinfotext);
     }
 
 }

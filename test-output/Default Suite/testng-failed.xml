@@ -3,13 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default Suite]">
   <test thread-count="5" name="SeleniumDemo2(failed)">
     <classes>
-      <class name="TaskManageTest">
+      <class name="CallTest">
         <methods>
-          <include name="setUp"/>
-          <include name="newTask"/>
-          <include name="tearDown"/>
+          <include name="setup"/>
+          <include name="callSystemTest"/>
         </methods>
-      </class> <!-- TaskManageTest -->
+      </class> <!-- CallTest -->
     </classes>
   </test> <!-- SeleniumDemo2(failed) -->
 </suite> <!-- Failed suite [Default Suite] -->

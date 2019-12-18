@@ -1,13 +1,11 @@
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 /**
  * @Author: A_dog.fang
  *
  * 外呼任务管理测试用例
  */
-public class TaskManageTest extends TestCaseBase{
+public class TaskManageTest extends ManageSystemBase {
 
     /*打开外呼任务管理界面*/
     @Test
@@ -18,12 +16,12 @@ public class TaskManageTest extends TestCaseBase{
 
     /*新增一个任务*/
     @Test
-    public void newTask() throws InterruptedException, IOException {
+    public void newTask() throws Exception {
         this.taskManageTest();
         TaskManageMovie taskManageMovie = new TaskManageMovie(driver);
         taskManageMovie.clickTaskAdd();
         taskManageMovie.sendTaskName("1125外呼任务");
-        taskManageMovie.selectTaskTime("2019-12-05","2019-12-21");
+        taskManageMovie.selectTaskTime("2019-12-12","2019-12-21");
         taskManageMovie.selectTaskComments("是");
         taskManageMovie.selectTaskFrom("掌中店");
         taskManageMovie.selectTaskType("号卡预约");
@@ -47,5 +45,13 @@ public class TaskManageTest extends TestCaseBase{
         taskManageMovie.clickAutoDistribute();
         taskManageMovie.selectHallNoSecuss();
 
+    }
+
+    /*点击导出按钮，断言是否导出成功提示*/
+    @Test
+    public void outTaskNames(){
+        this.taskManageTest();
+        TaskManageMovie taskManageMovie = new TaskManageMovie(driver);
+        taskManageMovie.clickOutButton();
     }
 }

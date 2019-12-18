@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
  * 任务名单测试用例
  *
  */
-public class TaskTemplateTest extends TestCaseBase {
+public class TaskTemplateTest extends ManageSystemBase {
 
     @Test
     public void taskTemplateTest() {
